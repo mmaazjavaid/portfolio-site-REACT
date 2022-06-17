@@ -8,7 +8,7 @@ import './index.scss'
 
 const Contact = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
-  const form = useRef()
+  const refform = useRef()
 
   useEffect(() => {
     return ()=>{
@@ -25,13 +25,14 @@ const Contact = () => {
       .sendForm(
         'service_2vfnfc8',
         'template_rzg1vca',
-        form.current,
+        refform.current,
         '1M6hhSjE1TgTOzMPp'
       )
       .then(
-        () => {
+        (e) => {
           alert('Message successfully sent!')
           window.location.reload(false)
+          e.preventDefault()
         },
         () => {
           alert('Failed to send the message, please try again')
@@ -56,7 +57,7 @@ const Contact = () => {
             don't hesitate to contact me using below form either.
           </p>
           <div className="contact-form">
-            <form ref={form} onSubmit={sendEmail}>
+            <form ref={refform} onSubmit={sendEmail}>
               <ul>
                 <li className="half">
                   <input placeholder="Name" type="text" name="name" required />
